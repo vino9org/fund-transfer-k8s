@@ -1,14 +1,19 @@
 package net.vino9.vinobank;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 public class FundTransferRequest {
 
+    @JsonProperty("customer_id")
     String customerId;
+    @JsonProperty("account_id")
     String accountId;
+    @JsonProperty("credit_account_id")
     String creditAccountId;
     double amount;
     String currency;
+    @JsonProperty("transaction_date")
     String transactionDate;
     String memo;
 

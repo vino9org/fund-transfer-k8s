@@ -1,12 +1,11 @@
 package net.vino9.vinobank;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.notNullValue;
+
 import io.quarkus.test.junit.QuarkusTest;
 import javax.ws.rs.core.MediaType;
 import org.junit.jupiter.api.Test;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 
 @QuarkusTest
 public class FundTransferResourceTest {

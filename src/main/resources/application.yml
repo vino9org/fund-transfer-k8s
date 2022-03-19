@@ -1,0 +1,31 @@
+quarkus:
+  container-image:
+    registry: docker.io
+    group: sloppycoder
+    name: vinobank-fund-transfer
+  rest-client:
+    core-banking-api:
+      url: http://core-banking-sim:8080
+      scope: javax.inject.Singleton
+
+api:
+  limits-api:
+    base-url: https://6a197tkp25.execute-api.us-west-2.amazonaws.com/prod
+    aws-region: us-west-2
+
+
+"%dev":
+  quarkus:
+    log:
+      console:
+        json: false
+
+"%test":
+  quarkus:
+    log:
+      console:
+        json: false
+    rest-client:
+      core-banking-api:
+        url: http://localhost:8000
+        scope: javax.inject.Singleton
