@@ -84,7 +84,7 @@ public class LimitsApiClient extends AmazonWebServiceClient {
 
 
     @PostConstruct
-    private void initialize() throws URISyntaxException {
+    void initialize() throws URISyntaxException {
 
         Config appConfig = ConfigProvider.getConfig();
 

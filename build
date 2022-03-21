@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PUSH_FLAG=false
+
+if [ "$1" = "-p" ]; then
+   PUSH_FLAG=true
+fi
+
+CMD="./mvnw clean package -DskipTests -Dquarkus.container-image.build=true -Dquarkus.container-image.push=$PUSH_FLAG"
+echo $CMD
+$CMD

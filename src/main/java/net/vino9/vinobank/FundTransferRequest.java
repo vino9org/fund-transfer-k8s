@@ -16,6 +16,8 @@ public class FundTransferRequest {
     @JsonProperty("transaction_date")
     String transactionDate;
     String memo;
+    @JsonProperty("limits_req_id")
+    String limitsRequestId;
 
     public String getCustomerId() {
         return customerId;
@@ -71,6 +73,14 @@ public class FundTransferRequest {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public String getLimitsRequestId() {
+        return limitsRequestId;
+    }
+
+    public void setLimitsRequestId(String limitsRequestId) {
+        this.limitsRequestId = limitsRequestId;
     }
 
     @Override

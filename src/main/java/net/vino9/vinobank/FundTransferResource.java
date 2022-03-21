@@ -41,6 +41,7 @@ public class FundTransferResource {
         NewLimitResponse limitsApiResponse;
         try {
             limitsApiResponse = limitsApiClient.newRequest(request.getCustomerId(), request.getAmount());
+            request.setLimitsRequestId(limitsApiResponse.getRequestId());
         } catch (ApiGatewayException e) {
             return Response.status(500,
                 String.format("unable to reserve transfer limit, error message = %s", e.getMessage())
