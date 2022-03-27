@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class FundTransferRequest {
 
-    @JsonProperty("customer_id")
+    @JsonProperty("debit_customer_id")
     String customerId;
-    @JsonProperty("account_id")
+    @JsonProperty("debit_account_id")
     String accountId;
     @JsonProperty("credit_account_id")
     String creditAccountId;

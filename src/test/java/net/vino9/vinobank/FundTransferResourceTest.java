@@ -44,11 +44,12 @@ public class FundTransferResourceTest {
 
     private FundTransferRequest newRequest() {
         FundTransferRequest request = new FundTransferRequest();
-        request.setCustomerId("ABCD");
-        request.setAccountId("1123");
-        request.setCreditAccountId("2222");
+        // the following IDs needs to exist in the corebanking sim
+        request.setCustomerId("CUS01FYS5XB5V2RBV52NYDEESNTP4");
+        request.setAccountId("ACC01FYS5XB5VBJYNE91JQQ5BQZFB");
+        request.setCreditAccountId("ACC01FYS5XB5V2BGWBJ42A66RNT32");
         request.setCurrency("SGD");
-        request.setAmount(1000.10);
+        request.setAmount(100.10);
         request.setMemo("just testing");
         request.setTransactionDate("2022-03-13");
         return request;
