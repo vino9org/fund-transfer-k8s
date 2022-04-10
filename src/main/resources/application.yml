@@ -1,4 +1,6 @@
 quarkus:
+  application:
+    name: fund-transfer
   container-image:
     registry: docker.io
     group: sloppycoder
@@ -7,6 +9,15 @@ quarkus:
     core-banking-api:
       url: http://corebanking-sim:8000
       scope: javax.inject.Singleton
+  opentelemetry:
+    enabled: true
+    propagators: tracecontext,baggage,ottrace,xray
+    tracer:
+      exporter:
+        otlp:
+          endpoint: http://${OLTP_COLLECTOR_IP:127.0.0.1}:4317
+  log:
+    level: INFO
 
 api:
   limits-api:
