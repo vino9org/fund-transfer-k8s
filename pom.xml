@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.vino9.vinobank</groupId>
     <artifactId>fund-transfer</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <properties>
         <aws-sdk-version>1.12.181</aws-sdk-version>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>

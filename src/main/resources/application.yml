@@ -2,8 +2,8 @@ quarkus:
   application:
     name: fund-transfer
   container-image:
-    registry: docker.io
-    group: sloppycoder
+    registry: public.ecr.aws
+    group: vino9
     name: vinobank-fund-transfer
   rest-client:
     core-banking-api:
