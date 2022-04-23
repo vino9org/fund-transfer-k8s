@@ -10,7 +10,7 @@ quarkus:
       url: http://corebanking-sim:8000
       scope: javax.inject.Singleton
     limits-api:
-      url: https://6a197tkp25.execute-api.us-west-2.amazonaws.com/prod
+      url: ${LIMITS_API_URL:dummy}
       scope: javax.inject.Singleton
   opentelemetry:
     enabled: true
