@@ -9,6 +9,9 @@ quarkus:
     core-banking-api:
       url: http://corebanking-sim:8000
       scope: javax.inject.Singleton
+    limits-api:
+      url: https://6a197tkp25.execute-api.us-west-2.amazonaws.com/prod
+      scope: javax.inject.Singleton
   opentelemetry:
     enabled: true
     propagators: tracecontext,baggage,ottrace,xray
@@ -21,8 +24,7 @@ quarkus:
 
 api:
   limits-api:
-    base-url: https://6a197tkp25.execute-api.us-west-2.amazonaws.com/prod
-    aws-region: us-west-2
+    api-key: ${LIMITS_API_KEY:dummy}
 
 
 "%dev":

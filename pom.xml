@@ -6,9 +6,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.vino9.vinobank</groupId>
     <artifactId>fund-transfer</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <properties>
-        <aws-sdk-version>1.12.181</aws-sdk-version>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <failsafe.useModulePath>false</failsafe.useModulePath>
         <maven.compiler.release>11</maven.compiler.release>
@@ -56,18 +55,9 @@
             <artifactId>opentelemetry-extension-aws</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-sdk-extension-aws</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.opentelemetry.contrib</groupId>
             <artifactId>opentelemetry-aws-xray</artifactId>
             <version>1.12.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-core</artifactId>
-            <version>${aws-sdk-version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>

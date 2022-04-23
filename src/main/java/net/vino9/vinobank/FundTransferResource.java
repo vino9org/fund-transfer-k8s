@@ -8,9 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import net.vino9.vinobank.client.ApiGatewayException;
 import net.vino9.vinobank.client.CoreBankingService;
-import net.vino9.vinobank.client.LimitsApiClient;
+import net.vino9.vinobank.client.CustomerLimitService;
 import net.vino9.vinobank.client.NewLimitResponse;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
@@ -21,7 +20,8 @@ public class FundTransferResource {
     private static final Logger logger = Logger.getLogger(FundTransferResource.class);
 
     @Inject
-    LimitsApiClient limitsApiClient;
+    @RestClient
+    CustomerLimitService customerLimitService;
 
     @Inject
     @RestClient
@@ -38,21 +38,25 @@ public class FundTransferResource {
         }
 
         // check if the transfer exceed per customer limit
-        NewLimitResponse limitsApiResponse;
-        try {
-            limitsApiResponse = limitsApiClient.newRequest(request.getCustomerId(), request.getAmount());
-            request.setLimitsRequestId(limitsApiResponse.getRequestId());
-        } catch (ApiGatewayException e) {
-            return Response.status(500,
-                String.format("unable to reserve transfer limit, error message = %s", e.getMessage())
-            ).build();
+        try (Response limitResponse = customerLimitService.newRequest(request.getCustomerId(),
+            Map.of("req_amount", request.getAmount()))) {
+            if (limitResponse.getStatus() != 201) {
+                return Response.status(500,
+                    String.format("error from customer limit service: %s",
+                        limitResponse.getStatus())
+                ).build();
+            }
+
+            NewLimitResponse newLimitRequest = limitResponse.readEntity(NewLimitResponse.class);
+            request.setLimitsRequestId(newLimitRequest.getRequestId());
         }
 
         // call core banking to perform transfer
         Response coreBankingResponse = coreBankingService.invokeFundTransfer(request);
         if (coreBankingResponse.getStatus() != 200) {
             return Response.status(500,
-                String.format("error from core banking service: %d", coreBankingResponse.getStatus())
+                String.format("error from core banking service: %d",
+                    coreBankingResponse.getStatus())
             ).build();
         }
 
