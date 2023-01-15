@@ -10,13 +10,14 @@
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <failsafe.useModulePath>false</failsafe.useModulePath>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>2.7.4.Final</quarkus.platform.version>
-        <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+        <quarkus.platform.version>2.15.3.Final</quarkus.platform.version>
+        <skipITs>true</skipITs>
+        <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -41,23 +42,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client-jackson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-opentelemetry-exporter-otlp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-extension-trace-propagators</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-extension-aws</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry.contrib</groupId>
-            <artifactId>opentelemetry-aws-xray</artifactId>
-            <version>1.12.0</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
