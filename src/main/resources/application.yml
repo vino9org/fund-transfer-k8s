@@ -7,7 +7,7 @@ quarkus:
     name: fund-transfer
   rest-client:
     core-banking-api:
-      url: http://corebanking-sim:8000
+      url: http://core-banking-sim:8000
       scope: javax.inject.Singleton
   log:
     level: INFO
