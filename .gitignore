@@ -44,3 +44,5 @@ nb-configuration.xml
 .swagger-codegen-ignore
 .swagger-codegen/
 schema/out
+
+newrelic_lic.env

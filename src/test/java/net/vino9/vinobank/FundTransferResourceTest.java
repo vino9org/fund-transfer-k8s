@@ -10,10 +10,10 @@ import javax.ws.rs.core.MediaType;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
-public class FundTransferResourceTest {
+class FundTransferResourceTest {
 
     @Test
-    public void testNewFundTransfer() {
+    void testNewFundTransfer() {
         var request = newRequest();
 
         // @formatter:off
@@ -29,7 +29,7 @@ public class FundTransferResourceTest {
     }
 
     @Test
-    public void testInvalidFundTransfer() {
+    void testInvalidFundTransfer() {
         var request = newRequest();
         request.setCreditAccountId("");
 

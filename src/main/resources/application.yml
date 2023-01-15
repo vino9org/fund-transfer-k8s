@@ -11,6 +11,8 @@ quarkus:
       scope: javax.inject.Singleton
   log:
     level: INFO
+  jib:
+    jvm-arguments: "-javaagent:/newrelic/newrelic.jar"
 
 "%dev":
   quarkus:

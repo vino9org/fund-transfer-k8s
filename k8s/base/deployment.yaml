@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fund-transfer
+spec:
+  selector:
+    matchLabels:
+      app: fund-transfer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fund-transfer
+    spec:
+      containers:
+      - name: fund-transfer
+        image: ghcr.io/vino9org/fund-transfer:1.0.4-SNAPSHOT
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+          - name: NEW_RELIC_APP_NAME
+            value: vinobank/fund-transfer
+          - name: NEW_RELIC_LICENSE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: newrelic-license
+                key: NEW_RELIC_LICENSE_KEY
+                optional: false
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fund-transfer
+spec:
+  type: ClusterIP
+  selector:
+    app: fund-transfer
+  ports:
+  - name: http
+    port: 8080
