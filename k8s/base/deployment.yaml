@@ -26,7 +26,7 @@ spec:
               secretKeyRef:
                 name: newrelic-license
                 key: NEW_RELIC_LICENSE_KEY
-                optional: false
+                optional: true
 
 ---
 apiVersion: v1

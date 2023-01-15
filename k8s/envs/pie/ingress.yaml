@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fund-transfer-ingress
+  annotations:
+    konghq.com/protocols: "http"
+spec:
+  ingressClassName: kong
+  rules:
+  - host: pie4.lan
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /transfers
+        backend:
+          service:
+            name: fund-transfer
+            port:
+              number: 8080
+
+
