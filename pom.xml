@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.vino9.vinobank</groupId>
     <artifactId>fund-transfer</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <failsafe.useModulePath>false</failsafe.useModulePath>
@@ -110,6 +110,26 @@
                         </java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-javaagent:/agent/rewrelic/newrelic.jar</jvmFlag>
+                        </jvmFlags>
+                        <labels>
+                            <org.opencontainers.image.source>https://github.com/vino9org/fund-transfer-k8s</org.opencontainers.image.source>
+                        </labels>
+                    </container>
+                    <extraDirectories>
+                        <path>
+                            <from>src/main/agent</from>
+                            <into>/agent</into>
+                        </path>
+                    </extraDirectories>
                 </configuration>
             </plugin>
         </plugins>
