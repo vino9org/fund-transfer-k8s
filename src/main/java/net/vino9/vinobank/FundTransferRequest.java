@@ -16,8 +16,8 @@ public class FundTransferRequest {
     @JsonProperty("transaction_date")
     String transactionDate;
     String memo;
-    @JsonProperty("limits_req_id")
-    String limitsRequestId;
+    @JsonProperty("ref_id")
+    String referenceId;
 
     public String getCustomerId() {
         return customerId;
@@ -75,12 +75,12 @@ public class FundTransferRequest {
         this.memo = memo;
     }
 
-    public String getLimitsRequestId() {
-        return limitsRequestId;
+    public String getReferenceId() {
+        return referenceId;
     }
 
-    public void setLimitsRequestId(String limitsRequestId) {
-        this.limitsRequestId = limitsRequestId;
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 
     @Override

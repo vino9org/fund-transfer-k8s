@@ -2,30 +2,15 @@ quarkus:
   application:
     name: fund-transfer
   container-image:
-    registry: public.ecr.aws
-    group: vino9
-    name: vinobank-fund-transfer
+    registry: ghcr.io
+    group: vino9org
+    name: fund-transfer
   rest-client:
     core-banking-api:
       url: http://corebanking-sim:8000
       scope: javax.inject.Singleton
-    limits-api:
-      url: ${LIMITS_API_URL:dummy}
-      scope: javax.inject.Singleton
-  opentelemetry:
-    enabled: true
-    propagators: tracecontext,baggage,ottrace,xray
-    tracer:
-      exporter:
-        otlp:
-          endpoint: http://${OLTP_COLLECTOR_IP:127.0.0.1}:4317
   log:
     level: INFO
-
-api:
-  limits-api:
-    api-key: ${LIMITS_API_KEY:dummy}
-
 
 "%dev":
   quarkus:
