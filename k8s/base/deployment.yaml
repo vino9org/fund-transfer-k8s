@@ -19,6 +19,8 @@ spec:
         ports:
         - containerPort: 8080
         env:
+          - name: QUARKUS_LOG_LEVEL
+            value: WARN
           - name: NEW_RELIC_APP_NAME
             value: vinobank/fund-transfer
           - name: NEW_RELIC_LICENSE_KEY

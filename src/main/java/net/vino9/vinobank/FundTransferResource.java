@@ -28,21 +28,28 @@ public class FundTransferResource {
         logger.infof("Received request %s", request);
 
         if (request.getCreditAccountId().isEmpty()) {
-            return Response.status(400, "credit_account_id is required").build();
+            return Response.status(422, "credit_account_id is required").build();
         }
 
         // call core banking to perform transfer
         Response coreBankingResponse = coreBankingService.invokeFundTransfer(request);
-        if (coreBankingResponse.getStatus() != 200) {
-            return Response.status(500,
-                    String.format("error from core banking service: %d",
-                            coreBankingResponse.getStatus())
-            ).build();
+        switch (coreBankingResponse.getStatus()) {
+            case 200:
+                String coreBankingResponseBody = coreBankingResponse.readEntity(String.class);
+                logger.infof("core banking response body is %s", coreBankingResponseBody);
+                return Response.accepted(coreBankingResponseBody).build();
+
+            case 422:
+                return Response.status(422,
+                        String.format("request validation error, message=%s",
+                                coreBankingResponse.readEntity(String.class))
+                ).build();
+
+            default:
+                return Response.status(500,
+                        String.format("technical error calling core banking. code=%d, message=%s",
+                                coreBankingResponse.getStatus(), coreBankingResponse.readEntity(String.class))
+                ).build();
         }
-
-        String coreBankingResponseBody = coreBankingResponse.readEntity(String.class);
-        logger.infof("core banking response body is %s", coreBankingResponseBody);
-
-        return Response.accepted(coreBankingResponseBody).build();
     }
 }
