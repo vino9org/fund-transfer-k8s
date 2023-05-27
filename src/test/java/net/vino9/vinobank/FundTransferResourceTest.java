@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MediaType;
 
 import org.junit.jupiter.api.Test;
 
