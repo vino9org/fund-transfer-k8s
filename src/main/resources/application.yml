@@ -5,10 +5,15 @@ quarkus:
     registry: ghcr.io
     group: vino9org
     name: fund-transfer
-  rest-client:
-    core-banking-api:
-      url: http://core-banking-sim:8000
-      scope: javax.inject.Singleton
+  stork:
+    core-banking-sim:
+      service-discovery:
+        type: kubernetes
+        k8s-namespace: vinobank
+        port-name: http
+      load-balancer:
+        type: round-robin
+
   log:
     level: INFO
     console:

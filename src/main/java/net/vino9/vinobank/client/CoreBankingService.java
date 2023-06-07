@@ -8,7 +8,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.eclipse.microprofile.faulttolerance.Retry;
 
 @Path("/core-banking")
-@RegisterRestClient(configKey="core-banking-api")
+@RegisterRestClient(baseUri = "stork://core-banking-sim")
 public interface CoreBankingService {
     @POST
     @Path("/local-transfers")
