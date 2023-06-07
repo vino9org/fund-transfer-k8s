@@ -9,7 +9,7 @@ quarkus:
     core-banking-sim:
       service-discovery:
         type: kubernetes
-        k8s-namespace: vinobank
+        k8s-namespace: vinobank-dev
         port-name: http
       load-balancer:
         type: round-robin
